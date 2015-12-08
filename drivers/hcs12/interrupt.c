@@ -18,16 +18,16 @@ Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-*/
+ */
 
 /*
 Functions called by interrupts vectors.
-*/
+ */
 /*
 This is a part of the driver, of course !
 But you have to put your code in this functions,
 if you plan to use interruptions.
-*/
+ */
 
 #include "../include/data.h"
 #include "../include/hcs12/applicfg.h"
@@ -42,21 +42,17 @@ if you plan to use interruptions.
 extern volatile char msgRecu;
 extern volatile Message canMsgRcv;
 
-
-
 /* Inhibe les interruptions */
 
-void lock (void)
-{
-   unsigned short mask;
-   __asm__ __volatile__ ("tpa\n\tsei" : "=d"(mask));
+void lock(void) {
+    unsigned short mask;
+    __asm__ __volatile__("tpa\n\tsei" : "=d"(mask));
 
 }
 
 /* Autorise les interruptions */
-void unlock (void)
-{ 
-   __asm__ __volatile__ ("cli");
+void unlock(void) {
+    __asm__ __volatile__("cli");
 }
 
 

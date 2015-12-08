@@ -18,7 +18,7 @@ Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-*/
+ */
 
 #ifndef __APPLICFG_HC12__
 #define __APPLICFG_HC12__
@@ -52,7 +52,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 /* CANOPEN_BIG_ENDIAN now defined in config.h*/
 #ifndef CANOPEN_BIG_ENDIAN
-#  define CANOPEN_BIG_ENDIAN 1
+#define CANOPEN_BIG_ENDIAN 1
 #endif
 
 
@@ -60,9 +60,9 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //#define USE_PLL
 
 #ifdef USE_PLL
-#  define BUS_CLOCK 24 // If the quartz on the board is 16 MHz. If different, change this value
+#define BUS_CLOCK 24 // If the quartz on the board is 16 MHz. If different, change this value
 #else 
-#  define BUS_CLOCK 8  // If the quartz on the board is 16 MHz. If different, change this value
+#define BUS_CLOCK 8  // If the quartz on the board is 16 MHz. If different, change this value
 #endif
 
 /// Configuration of the serials port SCI0 and SCI1
@@ -92,10 +92,10 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 
 /// Initialisation of the serial port 0
-extern void initSCI_0 (void);
+extern void initSCI_0(void);
 
 /// Initialisation of the serial port 1
-extern void initSCI_1 (void);
+extern void initSCI_1(void);
 
 /// Convert an integer to a string in hexadecimal format
 /// If you do not wants to use a lastCar, put lastCar = '\0' (end of string)
@@ -108,22 +108,22 @@ extern void initSCI_1 (void);
 /// buf[8] = '\n'
 /// buf[9] = '\0'
 extern char *
-hex_convert (char *buf, unsigned long value, char lastCar);
+hex_convert(char *buf, unsigned long value, char lastCar);
 
 /// Print the string to the serial port sci 
 /// (sci takes the values SCI0 or SCI1)
-extern void printSCI_str (char sci, const char * str); 
+extern void printSCI_str(char sci, const char * str);
 
 /// Print the number in hexadecimal  to the serial port sci 
 /// (sci takes the values SCI0 or SCI1)
-extern void printSCI_nbr (char sci, unsigned long nbr, char lastCar);
+extern void printSCI_nbr(char sci, unsigned long nbr, char lastCar);
 
 /// to start using the PLL. Bus clock becomes 24 MHz if the quartz 
 /// on the board is at 16 MHz
-extern void initPLL (void);
+extern void initPLL(void);
 
 /// Put here all the code to init the HCS12
-extern void initHCS12 (void);
+extern void initHCS12(void);
 
 // Integers
 #define INTEGER8 signed char
@@ -134,7 +134,7 @@ extern void initHCS12 (void);
 #define INTEGER48
 #define INTEGER56
 #define INTEGER64
- 
+
 // Unsigned integers
 #define UNS8   unsigned char
 #define UNS16  unsigned short
@@ -145,7 +145,7 @@ extern void initHCS12 (void);
 #define UNS48
 #define UNS56
 #define UNS64
-*/ 
+ */
 
 // Whatever your microcontroller, the timer wont work if 
 // TIMEVAL is not at least on 32 bits
@@ -160,7 +160,7 @@ extern void initHCS12 (void);
 
 
 // Reals
-#define REAL32	float
+#define REAL32 float
 #define REAL64 double
 
 #include "can.h"
@@ -169,27 +169,27 @@ extern void initHCS12 (void);
 /// Definition of MSG_ERR
 // ---------------------
 #ifdef DEBUG_ERR_CONSOLE_ON
-#    define MSG_ERR(num, str, val)            \
+#define MSG_ERR(num, str, val)            \
           initSCI_0();                        \
           printSCI_nbr(SCI0, num, ' ');       \
           /* large printing on console  */    \
           printSCI_str(SCI0, str);            \
           printSCI_nbr(SCI0, val, '\n');      
 #else
-#    define MSG_ERR(num, str, val)
+#define MSG_ERR(num, str, val)
 #endif
 
 /// Definition of MSG_WAR
 // ---------------------
 #ifdef DEBUG_WAR_CONSOLE_ON
-#    define MSG_WAR(num, str, val)          \
+#define MSG_WAR(num, str, val)          \
         initSCI_0();                        \
         printSCI_nbr(SCI0, num, ' ');       \
         /* large printing on console  */    \
         printSCI_str(SCI0, str);            \
         printSCI_nbr(SCI0, val, '\n');      
 #else
-#    define MSG_WAR(num, str, val)
+#define MSG_WAR(num, str, val)
 #endif
 
 

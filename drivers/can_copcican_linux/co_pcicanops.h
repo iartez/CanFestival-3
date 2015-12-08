@@ -20,11 +20,11 @@ Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-*/
+ */
 
 /*
-	CAN driver interface for CO-PCICAN card.
-*/
+        CAN driver interface for CO-PCICAN card.
+ */
 
 #ifndef _CO_PCICANOPS_
 #define _CO_PCICANOPS_
@@ -35,21 +35,19 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #define CMDQ_OPC_ENTER_CONFIG_MODE  0x02
 #define CMDQ_OPC_SET_CONFIG_CHANNEL 0xA2
 
-typedef struct
-{
-  unsigned char opcode;
-  unsigned long param[15];
+typedef struct {
+    unsigned char opcode;
+    unsigned long param[15];
 } co_pcican_config_t;
 
-typedef struct
-{
-  unsigned char channelnum;
-  unsigned long type;
-  unsigned long size;
-  unsigned long id;
-  unsigned char data[8];
-  unsigned long timestamp_lo;
-  unsigned long timestamp_hi;
+typedef struct {
+    unsigned char channelnum;
+    unsigned long type;
+    unsigned long size;
+    unsigned long id;
+    unsigned char data[8];
+    unsigned long timestamp_lo;
+    unsigned long timestamp_hi;
 } co_pcican_message_t;
 
 /*=============================================================================

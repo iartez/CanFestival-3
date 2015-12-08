@@ -19,7 +19,7 @@ Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-*/
+ */
 
 #ifndef _CONFIG_H_
 #define _CONFIG_H_
@@ -29,14 +29,14 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <ioavr.h>
 #include <intrinsics.h>
 #include "iar.h"
-#else	// GCC
+#else // GCC
 #include <inttypes.h>
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <avr/pgmspace.h>
 #include <avr/sleep.h>
 #include <avr/wdt.h>
-#endif	// GCC
+#endif // GCC
 
 //#define WD_SLEEP
 // Needed defines by Atmel lib

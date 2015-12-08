@@ -19,7 +19,7 @@ Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-*/
+ */
 
 #ifndef __CAN_AT91__
 #define __CAN_AT91__
@@ -30,10 +30,10 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "can.h"
 
 // Number of receive MB
-#define NB_MB				8
-#define NB_RX_MB			4
+#define NB_MB    8
+#define NB_RX_MB   4
 // Number of transmit MB
-#define NB_TX_MB			(NB_MB - NB_RX_MB)
+#define NB_TX_MB   (NB_MB - NB_RX_MB)
 
 #if (NB_TX_MB < 1)
 #error define less RX MBs, you must have at least 1 TX MB!
@@ -41,9 +41,9 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #error define at least 1 RX MBs!
 #endif
 
-#define START_TX_MB			NB_RX_MB
-#define TX_INT_MSK			((0xFF << (NB_MB - NB_TX_MB)) & 0xFF)
-#define RX_INT_MSK			(0xFF >> (NB_MB - NB_RX_MB))
+#define START_TX_MB   NB_RX_MB
+#define TX_INT_MSK   ((0xFF << (NB_MB - NB_TX_MB)) & 0xFF)
+#define RX_INT_MSK   (0xFF >> (NB_MB - NB_RX_MB))
 
 /************************* To be called by user app ***************************/
 

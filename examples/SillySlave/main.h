@@ -18,7 +18,7 @@ Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-*/
+ */
 
 /**
  * @file main.h
@@ -27,12 +27,12 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  * This file is part of SillySlave demo for CANfestival
  * open source CANopen stack.
- */ 
+ */
 
 
 
 #ifndef _MAIN_H
- #define _MAIN_H
+#define _MAIN_H
 
 #if defined(WIN32) && !defined(__CYGWIN__)
 #include <windows.h>

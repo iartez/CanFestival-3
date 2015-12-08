@@ -18,7 +18,7 @@ Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-*/
+ */
 
 /* exit.h - 32K Board specific parameters
    Copyright (C) 2002 Free Software Foundation, Inc.
@@ -50,21 +50,19 @@ Boston, MA 02111-1307, USA.  */
 #ifndef _M68HC11_ARCH_32K_EXIT_H
 #define _M68HC11_ARCH_32K_EXIT_H
 
-extern void _exit (short status) __attribute__((noreturn));
+extern void _exit(short status) __attribute__((noreturn));
 
 /* For the simulator, the wai stops everything and exits with the
    error code stored in register d.
 
    For a real 68HC11, enable interrupts and wait forever.  */
 extern inline void
-_exit (short status)
-{
-  /* Use 'd' constraint to force the status to be in the D
-     register before execution of the asm.  */
-  while (1)
-    {
-      __asm__ __volatile__ ("cli\n"
-                            "wai" : : "d"(status));
+_exit(short status) {
+    /* Use 'd' constraint to force the status to be in the D
+       register before execution of the asm.  */
+    while (1) {
+        __asm__ __volatile__("cli\n"
+                "wai" : : "d"(status));
     }
 }
 

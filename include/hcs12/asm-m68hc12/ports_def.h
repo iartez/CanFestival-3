@@ -18,10 +18,10 @@ Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-*/
+ */
 /*
 Definition of the i/o ports of the Motorola HCS12
-*/
+ */
 
 /*
 On HCS12, ports are maped by default at 0X0000. (see ports.s)
@@ -34,7 +34,7 @@ PROVIDE (_io_ports16 = 0X8000);
 (see portsaccess.h)
 I wonder if the value in INITRG must not be changed too 
 at run time.
-*/
+ */
 
 #ifndef __HCS12_PORTS__
 #define __HCS12_PORTS__
@@ -382,7 +382,7 @@ at run time.
 #define  CAN0TXFGD 0x017D
 #define  CAN0TXFGE 0x017E
 #define  CAN0TXFGF 0x017F 
-   
+
 #define  CAN1CTL0  0x0180    
 #define  CAN1CTL1  0x0181    
 #define  CAN1BTR0  0x0182      
@@ -692,8 +692,8 @@ at run time.
 
 /*********************************************** 
 Constants for MSCAN
-************************************************
-*/
+ ************************************************
+ */
 
 #define CAN0      0x0140  /* First address for MSCAN0                    */
 #define CAN1      0x0180  /* First address for MSCAN1                    */
@@ -706,9 +706,9 @@ Constants for MSCAN
 #define CANBTR0   0X02    /* Bus timing register 0                       */
 #define CANBTR1   0X03    /* Bus timing register 1                       */
 #define CANRFLG   0X04    /* Receiver flag register                      */
-#define CANRIER   0X05		/* Enable interruptions when reception    		 */	 
+#define CANRIER   0X05  /* Enable interruptions when reception    		 */  
 #define CANTFLG   0X06    /* Transmit flag register                      */
-#define CANTIER   0X07		/* Enable interruptions when transmission 		 */	 
+#define CANTIER   0X07  /* Enable interruptions when transmission 		 */  
 #define CANTBSEL  0X0A    /* Select foreground buffer for transmit       */
 #define CANIDAC   0x0B    /* Identifier acceptance control register      */
 #define CANIDAR0  0x10    
@@ -737,7 +737,7 @@ Constants for MSCAN
 #define CANTRSID  0x30    /* Base of identifier registers                */
 #define CANTRSDTA 0x34    /* Base of data       registers                */
 #define CANTRSLEN 0x3C    /* Data length        register                 */
-#define CANTRSPRI 0x3D    /* Priority           register                 */    	
+#define CANTRSPRI 0x3D    /* Priority           register                 */     
 
 
 /* Constants for serials port */
@@ -753,16 +753,16 @@ Constants for MSCAN
 #define  SCIDRH    0x06    
 #define  SCIDRL    0x07 
 
-	   
-#endif  /* __HCS12_PORTS__  */	   
-		   
-		   
-		   
-		   
-		   
-		   
-		   
-		   
-		   
-		   
-		   
+
+#endif  /* __HCS12_PORTS__  */    
+
+
+
+
+
+
+
+
+
+
+

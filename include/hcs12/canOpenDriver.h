@@ -18,7 +18,7 @@ Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-*/
+ */
 
 
 #ifndef __CANOPENDRIVER__
@@ -39,6 +39,6 @@ You can also call canDispatch(...) in void __attribute__((interrupt)) can0HdlRcv
 (see include/hcs12/canOpenDriver.c)
  */
 UNS8 f_can_receive(UNS8 notused, Message *m);
-UNS8 canChangeBaudRate_driver( CAN_HANDLE fd, char* baud);
+UNS8 canChangeBaudRate_driver(CAN_HANDLE fd, char* baud);
 
 #endif

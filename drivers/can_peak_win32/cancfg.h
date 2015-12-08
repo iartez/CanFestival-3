@@ -19,7 +19,7 @@ Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-*/
+ */
 
 #ifndef __CANCFG_H__
 #define __CANCFG_H__
@@ -38,19 +38,19 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //-------------------------------------------------------------------------------
 
 #ifdef PCAN2_HEADER_
- #include "pcan_2usb.h"
- #define CAN_Init(wBTR0BTR1,Type) CAN2_Init(wBTR0BTR1,Type)
- #define CAN_Close()		  CAN2_Close()
- #define CAN_Status()		  CAN2_Status()
- #define CAN_Write(PCANMsg)	  CAN2_Write(PCANMsg)
- #define CAN_Read(PCANMsg)	  CAN2_Read(PCANMsg)  
- #define CAN_VersionInfo(lpszTextBuff) CAN2_VersionInfo(lpszTextBuff)
- #define CAN_ResetClient()       CAN2_ResetClient() 
- #define CAN_MsgFilter(FromID,ToID,Type) CAN2_MsgFilter(FromID,ToID,Type)
- #define CAN_ReadEx(pMsgBuff,pRcvTime) CAN2_ReadEx(pMsgBuff,pRcvTime)
- #define CAN_SetRcvEvent(hEvent) CAN2_SetRcvEvent(hEvent)
+#include "pcan_2usb.h"
+#define CAN_Init(wBTR0BTR1,Type) CAN2_Init(wBTR0BTR1,Type)
+#define CAN_Close()    CAN2_Close()
+#define CAN_Status()    CAN2_Status()
+#define CAN_Write(PCANMsg)   CAN2_Write(PCANMsg)
+#define CAN_Read(PCANMsg)   CAN2_Read(PCANMsg)  
+#define CAN_VersionInfo(lpszTextBuff) CAN2_VersionInfo(lpszTextBuff)
+#define CAN_ResetClient()       CAN2_ResetClient() 
+#define CAN_MsgFilter(FromID,ToID,Type) CAN2_MsgFilter(FromID,ToID,Type)
+#define CAN_ReadEx(pMsgBuff,pRcvTime) CAN2_ReadEx(pMsgBuff,pRcvTime)
+#define CAN_SetRcvEvent(hEvent) CAN2_SetRcvEvent(hEvent)
 #else
- #include "pcan_usb.h"
+#include "pcan_usb.h"
 #endif
 
 #endif

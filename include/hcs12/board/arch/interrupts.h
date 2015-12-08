@@ -18,7 +18,7 @@ Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-*/
+ */
 /* Interrupt Vectors -- ROM mode
    Copyright (C) 2000, 2001, 2002 Free Software Foundation, Inc.
    Written by Stephane Carrez (stcarrez@worldnet.fr)	
@@ -52,9 +52,8 @@ Boston, MA 02111-1307, USA.  */
 /* For ROM-boards, interrupts are in ROM and are not installed
    at run time.  Implementation is empty.  */
 extern inline void
-set_interrupt_handler (interrupt_vector_id id ATTRIBUTE_UNUSED,
-                       interrupt_t handler ATTRIBUTE_UNUSED)
-{
+set_interrupt_handler(interrupt_vector_id id ATTRIBUTE_UNUSED,
+        interrupt_t handler ATTRIBUTE_UNUSED) {
 }
 
 #endif

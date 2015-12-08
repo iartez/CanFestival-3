@@ -19,18 +19,18 @@ Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-*/
+ */
 /******************************************************************************
 MCU ports and Bits
 Makros for access on hardware
-******************************************************************************/
+ ******************************************************************************/
 
 #ifndef _HARDWARE_INCLUDED
 #define _HARDWARE_INCLUDED
 
 /******************************************************************************
 Makros for bit access on the ports and registers
-******************************************************************************/
+ ******************************************************************************/
 // Macros for set and clear bits in I/O registers
 #define setbit(address,bit) ((address) |= (1<<(bit)))
 #define clearbit(address,bit) ((address) &= ~(1<<(bit)))
@@ -42,11 +42,11 @@ Makros for bit access on the ports and registers
 /************************** Hardware Makros **********************************/
 
 // Read the inputs
-#define get_inputs()		(~PINA)
-#define read_bcd()		(~PINC & 0x0F)
+#define get_inputs()  (~PINA)
+#define read_bcd()  (~PINC & 0x0F)
 // Write the outputs
-#define set_outputs(val)	PORTB = ~(val)
+#define set_outputs(val) PORTB = ~(val)
 
-#endif	// _HARDWARE_INCLUDED
+#endif // _HARDWARE_INCLUDED
 
 

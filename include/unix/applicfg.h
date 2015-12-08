@@ -18,7 +18,7 @@ Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-*/
+ */
 
 #ifndef __APPLICFG_LINUX__
 #define __APPLICFG_LINUX__
@@ -71,38 +71,38 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #define UNS64  u_int64_t
 
 /* Reals */
-#define REAL32	float
+#define REAL32 float
 #define REAL64 double
 
 /* Definition of error and warning macros */
 /* -------------------------------------- */
 #ifdef __KERNEL__
-#	define MSG(...) printk (__VA_ARGS__)
+#define MSG(...) printk (__VA_ARGS__)
 //#elif defined USE_RTAI
 //#	define MSG(...) rt_printk (__VA_ARGS__)
 #elif defined USE_XENO
-#	define MSG(...)
+#define MSG(...)
 #else
-#	include <stdio.h>
-#	define MSG(...) printf (__VA_ARGS__)
+#include <stdio.h>
+#define MSG(...) printf (__VA_ARGS__)
 #endif
 
 /* Definition of MSG_ERR */
 /* --------------------- */
 #ifdef DEBUG_ERR_CONSOLE_ON
-#    define MSG_ERR(num, str, val)            \
+#define MSG_ERR(num, str, val)            \
           MSG("%s,%d : 0X%x %s 0X%x \n",__FILE__, __LINE__,num, str, val);
 #else
-#    define MSG_ERR(num, str, val)
+#define MSG_ERR(num, str, val)
 #endif
 
 /* Definition of MSG_WAR */
 /* --------------------- */
 #ifdef DEBUG_WAR_CONSOLE_ON
-#    define MSG_WAR(num, str, val)          \
+#define MSG_WAR(num, str, val)          \
           MSG("%s,%d : 0X%x %s 0X%x \n",__FILE__, __LINE__,num, str, val);
 #else
-#    define MSG_WAR(num, str, val)
+#define MSG_WAR(num, str, val)
 #endif
 
 typedef void* CAN_HANDLE;

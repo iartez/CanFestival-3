@@ -18,7 +18,7 @@ Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-*/
+ */
 
 #ifndef __objdictdef_h__
 #define __objdictdef_h__
@@ -78,41 +78,40 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #define DCF_TO_SEND 0x08
 
 /************************ STRUCTURES ****************************/
+
 /** This are some structs which are neccessary for creating the entries
  *  of the object dictionary.
  */
-typedef struct td_subindex
-{
-    UNS8                    bAccessType;
-    UNS8                    bDataType; /* Defines of what datatype the entry is */
-    UNS32                   size;      /* The size (in Byte) of the variable */
-    void*                   pObject;   /* This is the pointer of the Variable */
+typedef struct td_subindex {
+    UNS8 bAccessType;
+    UNS8 bDataType; /* Defines of what datatype the entry is */
+    UNS32 size; /* The size (in Byte) of the variable */
+    void* pObject; /* This is the pointer of the Variable */
 } subindex;
 
 /** Struct for creating entries in the communictaion profile
  */
-typedef struct td_indextable
-{
-    subindex*   pSubindex;   /* Pointer to the subindex */
-    UNS8   bSubCount;   /* the count of valid entries for this subindex
+typedef struct td_indextable {
+    subindex* pSubindex; /* Pointer to the subindex */
+    UNS8 bSubCount; /* the count of valid entries for this subindex
                          * This count here defines how many memory has been
                          * allocated. this memory does not have to be used.
                          */
-    UNS16   index;
+    UNS16 index;
 } indextable;
 
-typedef struct s_quick_index{
-	UNS16 SDO_SVR;
-	UNS16 SDO_CLT;
-	UNS16 PDO_RCV;
-	UNS16 PDO_RCV_MAP;
-	UNS16 PDO_TRS;
-	UNS16 PDO_TRS_MAP;
-}quick_index;
+typedef struct s_quick_index {
+    UNS16 SDO_SVR;
+    UNS16 SDO_CLT;
+    UNS16 PDO_RCV;
+    UNS16 PDO_RCV_MAP;
+    UNS16 PDO_TRS;
+    UNS16 PDO_TRS_MAP;
+} quick_index;
 
 
 /*typedef struct struct_CO_Data CO_Data; */
-typedef UNS32 (*ODCallback_t)(CO_Data* d, const indextable *, UNS8 bSubindex);
+typedef UNS32(*ODCallback_t)(CO_Data* d, const indextable *, UNS8 bSubindex);
 typedef const indextable * (*scanIndexOD_t)(UNS16 wIndex, UNS32 * errorCode, ODCallback_t **Callback);
 
 /************************** MACROS *********************************/

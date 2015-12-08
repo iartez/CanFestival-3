@@ -18,7 +18,7 @@ Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-*/
+ */
 
 #ifndef __can_driver_h__
 #define __can_driver_h__
@@ -41,8 +41,8 @@ typedef struct struct_s_BOARD s_BOARD;
 //};
 
 struct struct_s_BOARD {
-  char * busname;  /**< The bus name on which the CAN board is connected */
-  char * baudrate; /**< The board baudrate */
+    char * busname; /**< The bus name on which the CAN board is connected */
+    char * baudrate; /**< The board baudrate */
 };
 
 #ifndef DLL_CALL
@@ -64,78 +64,72 @@ struct struct_s_BOARD {
 
 
 UNS8 DLL_CALL(canReceive)(CAN_HANDLE, Message *)FCT_PTR_INIT;
-UNS8 DLL_CALL(canSend)(CAN_HANDLE, Message const *)FCT_PTR_INIT;
-CAN_HANDLE DLL_CALL(canOpen)(s_BOARD *)FCT_PTR_INIT;
-int DLL_CALL(canClose)(CAN_HANDLE)FCT_PTR_INIT;
-UNS8 DLL_CALL(canChangeBaudRate)(CAN_HANDLE, char *)FCT_PTR_INIT;
+UNS8 DLL_CALL(canSend)(CAN_HANDLE, Message const *) FCT_PTR_INIT;
+CAN_HANDLE DLL_CALL(canOpen)(s_BOARD *) FCT_PTR_INIT;
+int DLL_CALL(canClose)(CAN_HANDLE) FCT_PTR_INIT;
+UNS8 DLL_CALL(canChangeBaudRate)(CAN_HANDLE, char *) FCT_PTR_INIT;
 
 #if defined DEBUG_MSG_CONSOLE_ON || defined NEED_PRINT_MESSAGE
 #include "def.h"
 
 #define _P(fc) case fc: MSG(#fc" ");break;
 
-static inline void print_message(Message const *m)
-{
+static inline void print_message(Message const *m) {
     int i;
     UNS8 fc;
     MSG("id:%02x ", m->cob_id & 0x7F);
     fc = m->cob_id >> 7;
-    switch(fc)
-    {
+    switch (fc) {
         case SYNC:
-            if(m->cob_id == 0x080)
+            if (m->cob_id == 0x080)
                 MSG("SYNC ");
             else
                 MSG("EMCY ");
-        break;
+            break;
 #ifdef CO_ENABLE_LSS
         case LSS:
-        	if(m->cob_id == 0x7E5)
+            if (m->cob_id == 0x7E5)
                 MSG("MLSS ");
             else
                 MSG("SLSS ");
-        break;
+            break;
 #endif
-        _P(TIME_STAMP)
-        _P(PDO1tx)
-        _P(PDO1rx)
-        _P(PDO2tx)
-        _P(PDO2rx)
-        _P(PDO3tx)
-        _P(PDO3rx)
-        _P(PDO4tx)
-        _P(PDO4rx)
-        _P(SDOtx)
-        _P(SDOrx)
-        _P(NODE_GUARD)
-        _P(NMT)
+            _P(TIME_STAMP)
+            _P(PDO1tx)
+            _P(PDO1rx)
+            _P(PDO2tx)
+            _P(PDO2rx)
+            _P(PDO3tx)
+            _P(PDO3rx)
+            _P(PDO4tx)
+            _P(PDO4rx)
+            _P(SDOtx)
+            _P(SDOrx)
+            _P(NODE_GUARD)
+            _P(NMT)
     }
-    if( fc == SDOtx)
-    {
-        switch(m->data[0] >> 5)
-        {
-            /* scs: server command specifier */
-            _P(UPLOAD_SEGMENT_RESPONSE)
-            _P(DOWNLOAD_SEGMENT_RESPONSE)
-            _P(INITIATE_DOWNLOAD_RESPONSE)
-            _P(INITIATE_UPLOAD_RESPONSE)
-            _P(ABORT_TRANSFER_REQUEST)
+    if (fc == SDOtx) {
+        switch (m->data[0] >> 5) {
+                /* scs: server command specifier */
+                _P(UPLOAD_SEGMENT_RESPONSE)
+                _P(DOWNLOAD_SEGMENT_RESPONSE)
+                _P(INITIATE_DOWNLOAD_RESPONSE)
+                _P(INITIATE_UPLOAD_RESPONSE)
+                _P(ABORT_TRANSFER_REQUEST)
         }
-    }else if( fc == SDOrx)
-    {
-        switch(m->data[0] >> 5)
-        {
-            /* ccs: client command specifier */
-            _P(DOWNLOAD_SEGMENT_REQUEST)
-            _P(INITIATE_DOWNLOAD_REQUEST)
-            _P(INITIATE_UPLOAD_REQUEST)
-            _P(UPLOAD_SEGMENT_REQUEST)
-            _P(ABORT_TRANSFER_REQUEST)
+    } else if (fc == SDOrx) {
+        switch (m->data[0] >> 5) {
+                /* ccs: client command specifier */
+                _P(DOWNLOAD_SEGMENT_REQUEST)
+                _P(INITIATE_DOWNLOAD_REQUEST)
+                _P(INITIATE_UPLOAD_REQUEST)
+                _P(UPLOAD_SEGMENT_REQUEST)
+                _P(ABORT_TRANSFER_REQUEST)
         }
     }
     MSG(" rtr:%d", m->rtr);
     MSG(" len:%d", m->len);
-    for (i = 0 ; i < m->len ; i++)
+    for (i = 0; i < m->len; i++)
         MSG(" %02x", m->data[i]);
     MSG("\n");
 }

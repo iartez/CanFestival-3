@@ -19,7 +19,7 @@ Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-*/
+ */
 
 #ifndef __APPLICFG_AVR__
 #define __APPLICFG_AVR__
@@ -47,11 +47,11 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #define UNS48
 #define UNS56
 #define UNS64
-*/ 
+ */
 
 
 // Reals
-#define REAL32	float
+#define REAL32 float
 #define REAL64 double
 #include "can.h"
 
@@ -62,24 +62,24 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 // ---------------------
 #ifdef DEBUG_ERR_CONSOLE_ON
 #define MSG_ERR(num, str, val)      \
-          printf(num, ' ');	\
-          printf(str);		\
-          printf(val);		\
+          printf(num, ' '); \
+          printf(str);  \
+          printf(val);  \
           printf('\n');
 #else
-#    define MSG_ERR(num, str, val)
+#define MSG_ERR(num, str, val)
 #endif
 
 /// Definition of MSG_WAR
 // ---------------------
 #ifdef DEBUG_WAR_CONSOLE_ON
 #define MSG_WAR(num, str, val)      \
-          printf(num, ' ');	\
-          printf(str);		\
-          printf(val);		\
+          printf(num, ' '); \
+          printf(str);  \
+          printf(val);  \
           printf('\n');
 #else
-#    define MSG_WAR(num, str, val)
+#define MSG_WAR(num, str, val)
 #endif
 
 typedef void* CAN_HANDLE;

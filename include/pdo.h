@@ -18,14 +18,14 @@ Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-*/
+ */
 
 /** @defgroup pdo Process Data Object (PDO)
  *  PDO is a communication object defined by the DPO communication parameter and PDA mapping parameter objects.
  *  It is an uncomfirmed communication service without protocol overhead.
  *  @ingroup comobj
  */
- 
+
 #ifndef __pdo_h__
 #define __pdo_h__
 
@@ -47,10 +47,10 @@ void _RxPDO_EventTimers_Handler(CO_Data *d, UNS32 pdoNum);
 
 /** The PDO structure */
 struct struct_s_PDO_status {
-  UNS8 transmit_type_parameter;
-  TIMER_HANDLE event_timer;
-  TIMER_HANDLE inhibit_timer;
-  Message last_message;
+    UNS8 transmit_type_parameter;
+    TIMER_HANDLE event_timer;
+    TIMER_HANDLE inhibit_timer;
+    Message last_message;
 };
 
 #define s_PDO_status_Initializer {0, TIMER_NONE, TIMER_NONE, Message_Initializer}
@@ -90,7 +90,7 @@ UNS8 buildPDO(CO_Data* d, UNS8 numPdo, Message *pdo);
  
  * @return 0xFF if error, other in success.
  */
-UNS8 sendPDOrequest( CO_Data* d, UNS16 RPDOIndex );
+UNS8 sendPDOrequest(CO_Data* d, UNS16 RPDOIndex);
 
 /**
  * @brief Compute a PDO frame reception
@@ -99,7 +99,7 @@ UNS8 sendPDOrequest( CO_Data* d, UNS16 RPDOIndex );
  * @param *m Pointer on a CAN message structure
  * @return 0xFF if error, else return 0
  */
-UNS8 proceedPDO (CO_Data* d, Message *m);
+UNS8 proceedPDO(CO_Data* d, Message *m);
 
 /** 
  * @brief Used by the application to signal changes in process data
@@ -109,8 +109,8 @@ UNS8 proceedPDO (CO_Data* d, Message *m);
  * type and content change before sending it.    
  * @param *d Pointer on a CAN object data structure
  */
-UNS8 sendPDOevent (CO_Data* d);
-UNS8 sendOnePDOevent (CO_Data* d, UNS8 pdoNum);
+UNS8 sendPDOevent(CO_Data* d);
+UNS8 sendOnePDOevent(CO_Data* d, UNS8 pdoNum);
 
 /** 
  * @ingroup pdo

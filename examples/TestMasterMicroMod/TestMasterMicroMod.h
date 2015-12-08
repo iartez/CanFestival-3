@@ -18,7 +18,7 @@ Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-*/
+ */
 #ifdef USE_XENO
 #define eprintf(...)
 #else
@@ -37,20 +37,20 @@ static int FIFO_Last = 0;\
 \
 static void PutInFIFO(Message *m)\
 {\
-	FIFO[FIFO_Last++] = *m;\
-	FIFO_Last %= CAN_FIFO_LENGTH;\
+        FIFO[FIFO_Last++] = *m;\
+        FIFO_Last %= CAN_FIFO_LENGTH;\
 }\
 \
 static void GetFromFIFO(Message *m)\
 {\
-	*m = FIFO[FIFO_First++];\
-	FIFO_First %= CAN_FIFO_LENGTH;\
+ *m = FIFO[FIFO_First++];\
+        FIFO_First %= CAN_FIFO_LENGTH;\
 }\
 \
 static void TransmitMessage(CO_Data* d, UNS32 id)\
 {\
-	Message m;\
-	GetFromFIFO(&m);\
-	canDispatch(d, &m);\
+        Message m;\
+        GetFromFIFO(&m);\
+        canDispatch(d, &m);\
 }
-*/
+ */

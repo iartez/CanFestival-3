@@ -18,13 +18,13 @@ Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-*/
+ */
 
 /** @defgroup nmtslave NMT Slave
  *  @brief The NMT Slave methods are called automatically when a NMT message from Master are received. 
  *  @ingroup networkmanagement
  */
- 
+
 #ifndef __nmtSlave_h__
 #define __nmtSlave_h__
 
@@ -39,7 +39,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *  -  0 if OK 
  *  - -1 if the slave is not allowed, by its state, to receive the message
  */
-void proceedNMTstateChange (CO_Data* d, Message * m);
+void proceedNMTstateChange(CO_Data* d, Message * m);
 
 /** 
  * @brief Transmit the boot-Up frame when the slave is moving from initialization
@@ -47,7 +47,7 @@ void proceedNMTstateChange (CO_Data* d, Message * m);
  * @param *d Pointer on the CAN data structure
  * @return canSend(bus_id,&m)
  */
-UNS8 slaveSendBootUp (CO_Data* d);
+UNS8 slaveSendBootUp(CO_Data* d);
 
 
 #endif /* __nmtSlave_h__ */

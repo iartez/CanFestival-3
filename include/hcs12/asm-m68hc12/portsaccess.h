@@ -18,10 +18,10 @@ Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-*/
+ */
 /*
 Variables to access to the io_ports
-*/
+ */
 
 
 #ifndef __PORTS_ACCESS__
@@ -30,7 +30,7 @@ Variables to access to the io_ports
 /*
 By default the address is 0X0000 on HCS12.
 But the ports can be remaped. See the file ports.h
-*/
+ */
 
 
 extern volatile unsigned char _io_ports[];
@@ -42,7 +42,7 @@ _io_ports[adr]
 /* To use for a 16 bits access */
 /* Example : IO_PORTS_16(CAN0IDAR1)= 0xABCD;
 will put AB at @CAN0IDAR1 and CD at  @CAN0IDAR1 + 1
-*/
+ */
 #define IO_PORTS_16(adr) \
 *((unsigned volatile short*) (_io_ports + (adr)))
 

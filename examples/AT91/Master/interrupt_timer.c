@@ -24,7 +24,7 @@
 //* Global variable
 int timer0_interrupt = 0;
 
-#define TIMER0_INTERRUPT_LEVEL		1
+#define TIMER0_INTERRUPT_LEVEL  1
 
 /*-----------------*/
 /* Clock Selection */
@@ -45,26 +45,26 @@ int timer0_interrupt = 0;
 //*                     : <TimerId> = Timer peripheral ID definitions
 //* Output Parameters   : None
 //*----------------------------------------------------------------------------
-void AT91F_TC_Open ( AT91PS_TC TC_pt, unsigned int Mode, unsigned int TimerId)
-{
-  unsigned int dummy;
 
-  //* First, enable the clock of the TIMER
-  AT91F_PMC_EnablePeriphClock ( AT91C_BASE_PMC, 1<< TimerId ) ;
+void AT91F_TC_Open(AT91PS_TC TC_pt, unsigned int Mode, unsigned int TimerId) {
+    unsigned int dummy;
 
-  //* Disable the clock and the interrupts
-  TC_pt->TC_CCR = AT91C_TC_CLKDIS ;
-  TC_pt->TC_IDR = 0xFFFFFFFF ;
+    //* First, enable the clock of the TIMER
+    AT91F_PMC_EnablePeriphClock(AT91C_BASE_PMC, 1 << TimerId);
 
-  //* Clear status bit
-  dummy = TC_pt->TC_SR;
-  //* Suppress warning variable "dummy" was set but never used
-  dummy = dummy;
-  //* Set the Mode of the Timer Counter
-  TC_pt->TC_CMR = Mode ;
+    //* Disable the clock and the interrupts
+    TC_pt->TC_CCR = AT91C_TC_CLKDIS;
+    TC_pt->TC_IDR = 0xFFFFFFFF;
 
-  //* Enable the clock
-  TC_pt->TC_CCR = AT91C_TC_CLKEN ;
+    //* Clear status bit
+    dummy = TC_pt->TC_SR;
+    //* Suppress warning variable "dummy" was set but never used
+    dummy = dummy;
+    //* Set the Mode of the Timer Counter
+    TC_pt->TC_CMR = Mode;
+
+    //* Enable the clock
+    TC_pt->TC_CCR = AT91C_TC_CLKEN;
 }
 //*------------------------- Interrupt Function -------------------------------
 
@@ -74,15 +74,15 @@ void AT91F_TC_Open ( AT91PS_TC TC_pt, unsigned int Mode, unsigned int TimerId)
 //*                       assembling routine
 //* Output Parameters   : increment count_timer0_interrupt
 //*----------------------------------------------------------------------------
-void timer0_c_irq_handler(void)
-{
-  AT91PS_TC TC_pt = AT91C_BASE_TC0;
-  unsigned int dummy;
-  //* AcknowAT91B_LEDge interrupt status
-  dummy = TC_pt->TC_SR;
-  //* Suppress warning variable "dummy" was set but never used
-  dummy = dummy;
-  timer0_interrupt = TRUE;
+
+void timer0_c_irq_handler(void) {
+    AT91PS_TC TC_pt = AT91C_BASE_TC0;
+    unsigned int dummy;
+    //* AcknowAT91B_LEDge interrupt status
+    dummy = TC_pt->TC_SR;
+    //* Suppress warning variable "dummy" was set but never used
+    dummy = dummy;
+    timer0_interrupt = TRUE;
 }
 
 //*-------------------------- External Function -------------------------------
@@ -93,18 +93,18 @@ void timer0_c_irq_handler(void)
 //* Input Parameters    : none
 //* Output Parameters   : TRUE
 //*----------------------------------------------------------------------------
-void timer_init (unsigned int time)
-{
-  //* Open timer0
-  AT91F_TC_Open(AT91C_BASE_TC0,TC_CLKS_MCK8 | AT91C_TC_WAVESEL_UP_AUTO,AT91C_ID_TC0);
 
-  //* Open Timer 0 interrupt
-  AT91F_AIC_ConfigureIt ( AT91C_BASE_AIC, AT91C_ID_TC0, TIMER0_INTERRUPT_LEVEL,AT91C_AIC_SRCTYPE_INT_HIGH_LEVEL, timer0_c_irq_handler);
-  AT91C_BASE_TC0->TC_IER = AT91C_TC_CPCS;  //  IRQ enable CPC
-  AT91F_AIC_EnableIt (AT91C_BASE_AIC, AT91C_ID_TC0);
+void timer_init(unsigned int time) {
+    //* Open timer0
+    AT91F_TC_Open(AT91C_BASE_TC0, TC_CLKS_MCK8 | AT91C_TC_WAVESEL_UP_AUTO, AT91C_ID_TC0);
 
-  AT91C_BASE_TC0->TC_RC = (unsigned int)(AT91C_MASTER_CLOCK / 8 * time / 1000);
+    //* Open Timer 0 interrupt
+    AT91F_AIC_ConfigureIt(AT91C_BASE_AIC, AT91C_ID_TC0, TIMER0_INTERRUPT_LEVEL, AT91C_AIC_SRCTYPE_INT_HIGH_LEVEL, timer0_c_irq_handler);
+    AT91C_BASE_TC0->TC_IER = AT91C_TC_CPCS; //  IRQ enable CPC
+    AT91F_AIC_EnableIt(AT91C_BASE_AIC, AT91C_ID_TC0);
 
-  //* Start timer0
-  AT91C_BASE_TC0->TC_CCR = AT91C_TC_SWTRG ;
+    AT91C_BASE_TC0->TC_RC = (unsigned int) (AT91C_MASTER_CLOCK / 8 * time / 1000);
+
+    //* Start timer0
+    AT91C_BASE_TC0->TC_CCR = AT91C_TC_SWTRG;
 }

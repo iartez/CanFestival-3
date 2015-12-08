@@ -18,7 +18,7 @@ Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-*/
+ */
 #include "data.h"
 
 #define DCF_STATUS_INIT         0
@@ -46,6 +46,6 @@ UNS8 init_consise_dcf(CO_Data* d, UNS8 nodeId);
  * @return 0: configuration manager busy
  *         1: nothing to check, node started
  *         2: dcf check started
-*/
+ */
 UNS8 check_and_start_node(CO_Data* d, UNS8 nodeId);
 

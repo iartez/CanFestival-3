@@ -19,7 +19,7 @@ Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-*/
+ */
 
 #ifndef __APPLICFG_AVR__
 #define __APPLICFG_AVR__
@@ -39,15 +39,15 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 /// buf[8] = '\n'
 /// buf[9] = '\0'
 extern char *
-hex_convert (char *buf, unsigned long value, char lastCar);
+hex_convert(char *buf, unsigned long value, char lastCar);
 
 /// Print the string to the serial port sci
 /// (sci takes the values SCI0 or SCI1)
-extern void printSCI_str (char sci, const char * str);
+extern void printSCI_str(char sci, const char * str);
 
 /// Print the number in hexadecimal  to the serial port sci
 /// (sci takes the values SCI0 or SCI1)
-extern void printSCI_nbr (char sci, unsigned long nbr, char lastCar);
+extern void printSCI_nbr(char sci, unsigned long nbr, char lastCar);
 
 // Integers
 #define INTEGER8 signed char
@@ -74,7 +74,7 @@ extern void printSCI_nbr (char sci, unsigned long nbr, char lastCar);
 #define REAL64 double
 
 // Reals
-#define REAL32	float
+#define REAL32 float
 #define REAL64 double
 
 #include "can.h"
@@ -83,27 +83,27 @@ extern void printSCI_nbr (char sci, unsigned long nbr, char lastCar);
 /// Definition of MSG_ERR
 // ---------------------
 #ifdef DEBUG_ERR_CONSOLE_ON
-#    define MSG_ERR(num, str, val)            \
+#define MSG_ERR(num, str, val)            \
           initSCI_0();                        \
           printSCI_nbr(SCI0, num, ' ');       \
           /* large printing on console  */    \
           printSCI_str(SCI0, str);            \
           printSCI_nbr(SCI0, val, '\n');
 #else
-#    define MSG_ERR(num, str, val)
+#define MSG_ERR(num, str, val)
 #endif
 
 /// Definition of MSG_WAR
 // ---------------------
 #ifdef DEBUG_WAR_CONSOLE_ON
-#    define MSG_WAR(num, str, val)          \
+#define MSG_WAR(num, str, val)          \
         initSCI_0();                        \
         printSCI_nbr(SCI0, num, ' ');       \
         /* large printing on console  */    \
         printSCI_str(SCI0, str);            \
         printSCI_nbr(SCI0, val, '\n');
 #else
-#    define MSG_WAR(num, str, val)
+#define MSG_WAR(num, str, val)
 #endif
 
 typedef void* CAN_HANDLE;

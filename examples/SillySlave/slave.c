@@ -18,7 +18,7 @@ Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-*/
+ */
 
 /**
  * @file slave.c
@@ -27,34 +27,31 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  * This file is part of SillySlave demo for CANfestival
  * open source CANopen stack.
- */ 
+ */
 
 #include "SillySlave.h"
 #include "slave.h"
 #include "main.h"
 
 
-static UNS8 slaveNode = 0;  
+static UNS8 slaveNode = 0;
 
-void InitNode(CO_Data* d, UNS32 id)
-{
+void InitNode(CO_Data* d, UNS32 id) {
     /* Defining the node Id */
     setNodeId(&SillySlave_Data, slaveNode);
     /* CAN init */
     setState(&SillySlave_Data, Initialisation);
 }
 
-void Exit(CO_Data* d, UNS32 id)
-{
-	/* Stop slave */
+void Exit(CO_Data* d, UNS32 id) {
+    /* Stop slave */
     setState(&SillySlave_Data, Stopped);
 }
 
-INTEGER8 InitCANdevice( UNS8 bus, UNS32 baudrate, UNS8 node )
-{ 
-char busName[2];
-char baudRate[7];
-s_BOARD board;
+INTEGER8 InitCANdevice(UNS8 bus, UNS32 baudrate, UNS8 node) {
+    char busName[2];
+    char baudRate[7];
+    s_BOARD board;
 
     sprintf(busName, "%u", bus);
     sprintf(baudRate, "%uK", baudrate);
@@ -72,84 +69,75 @@ s_BOARD board;
     SillySlave_Data.post_TPDO = SillySlave_post_TPDO;
     SillySlave_Data.storeODSubIndex = SillySlave_storeODSubIndex;
     SillySlave_Data.post_emcy = SillySlave_post_emcy;
-    
-	TimerInit();
 
-    if(!canOpen(&board, &SillySlave_Data))
-    {
-        printf("\n\aInitCANdevice() CAN bus %s opening error, baudrate=%s\n",board.busname, board.baudrate);
+    TimerInit();
+
+    if (!canOpen(&board, &SillySlave_Data)) {
+        printf("\n\aInitCANdevice() CAN bus %s opening error, baudrate=%s\n", board.busname, board.baudrate);
         return -1;
     }
 
 
     printf("\nInitCANdevice(), canOpen() OK, starting timer loop...\n");
 
-	/* Start timer thread */
-    StartTimerLoop(&InitNode); 
-    
-	/* wait Ctrl-C */
-	pause();
-	printf("\nFinishing.\n");
-	
-	/* Stop timer thread */
-	StopTimerLoop(&Exit);
+    /* Start timer thread */
+    StartTimerLoop(&InitNode);
+
+    /* wait Ctrl-C */
+    pause();
+    printf("\nFinishing.\n");
+
+    /* Stop timer thread */
+    StopTimerLoop(&Exit);
     return 0;
 }
 
-void SillySlave_heartbeatError(CO_Data* d, UNS8 heartbeatID)
-{
+void SillySlave_heartbeatError(CO_Data* d, UNS8 heartbeatID) {
     printf("SillySlave_heartbeatError %d\n", heartbeatID);
 }
 
-void SillySlave_initialisation(CO_Data* d )
-{
-    UNS32 PDO1_COBID = 0x0180 + NODE_MASTER; 
-    UNS8 size = sizeof(PDO1_COBID); 
-    
+void SillySlave_initialisation(CO_Data* d) {
+    UNS32 PDO1_COBID = 0x0180 + NODE_MASTER;
+    UNS8 size = sizeof (PDO1_COBID);
+
     printf("SillySlave_initialisation\n");
 
     /* sets TXPDO1 COB-ID to match master node ID */
-    writeLocalDict( 
-            &SillySlave_Data,       /*CO_Data* d*/
-            0x1800,                 /*UNS16 index*/
-            0x01,                   /*UNS8 subind*/ 
-            &PDO1_COBID,            /*void * pSourceData,*/ 
-            &size,                  /* UNS8 * pExpectedSize*/
-            RW);                    /* UNS8 checkAccess */
-            
+    writeLocalDict(
+            &SillySlave_Data, /*CO_Data* d*/
+            0x1800, /*UNS16 index*/
+            0x01, /*UNS8 subind*/
+            &PDO1_COBID, /*void * pSourceData,*/
+            &size, /* UNS8 * pExpectedSize*/
+            RW); /* UNS8 checkAccess */
+
     /* value sent to master at each SYNC received */
     LifeSignal = 0;
 }
 
-void SillySlave_preOperational(CO_Data* d)
-{
+void SillySlave_preOperational(CO_Data* d) {
     printf("SillySlave_preOperational\n");
 }
 
-void SillySlave_operational(CO_Data* d)
-{
+void SillySlave_operational(CO_Data* d) {
     printf("SillySlave_operational\n");
 }
 
-void SillySlave_stopped(CO_Data* d)
-{
+void SillySlave_stopped(CO_Data* d) {
     printf("SillySlave_stopped\n");
 }
 
-void SillySlave_post_sync(CO_Data* d)
-{
+void SillySlave_post_sync(CO_Data* d) {
     printf("SillySlave_post_sync: \n");
     LifeSignal++;
 }
 
-void SillySlave_post_TPDO(CO_Data* d)
-{
+void SillySlave_post_TPDO(CO_Data* d) {
     printf("SillySlave_post_TPDO: \n");
-    printf("LifeSignal = %u\n", LifeSignal);    
+    printf("LifeSignal = %u\n", LifeSignal);
 }
 
-void SillySlave_storeODSubIndex(CO_Data* d, UNS16 wIndex, UNS8 bSubindex)
-{
+void SillySlave_storeODSubIndex(CO_Data* d, UNS16 wIndex, UNS8 bSubindex) {
     /*TODO : 
      * - call getODEntry for index and subindex, 
      * - save content to file, database, flash, nvram, ...
@@ -159,11 +147,10 @@ void SillySlave_storeODSubIndex(CO_Data* d, UNS16 wIndex, UNS8 bSubindex)
      * for variables to store.
      * 
      * */
-    printf("SillySlave_storeODSubIndex : %4.4x %2.2xh\n", wIndex,  bSubindex);
+    printf("SillySlave_storeODSubIndex : %4.4x %2.2xh\n", wIndex, bSubindex);
 }
 
-void SillySlave_post_emcy(CO_Data* d, UNS8 nodeID, UNS16 errCode, UNS8 errReg)
-{
+void SillySlave_post_emcy(CO_Data* d, UNS8 nodeID, UNS16 errCode, UNS8 errReg) {
     printf("Slave received EMCY message. Node: %2.2xh  ErrorCode: %4.4x  ErrorRegister: %2.2xh\n", nodeID, errCode, errReg);
 }
 

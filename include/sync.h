@@ -18,14 +18,14 @@ Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-*/
+ */
 
 /** @defgroup synco Synchronisation Object
  *  SYNC object is a CANopen message forcing the receiving nodes to sample the inputs mapped into synchronous TPDOS.
  *  Receiving this message cause the node to set the outputs to values received in the previous synchronous RPDO.
  *  @ingroup comobj
  */
-					 
+
 #ifndef __SYNC_h__
 #define __SYNC_h__
 
@@ -44,7 +44,7 @@ void _post_TPDO(CO_Data* d);
  * @param *d Pointer on a CAN object data structure
  * @return
  */
-UNS8 sendSYNC (CO_Data* d);
+UNS8 sendSYNC(CO_Data* d);
 
 /** 
  * @brief Transmit a SYNC message on CAN bus
@@ -61,6 +61,6 @@ UNS8 sendSYNCMessage(CO_Data* d);
  * @param *d Pointer on a CAN object data structure
  * @return 0 if OK, 0xFF if error 
  */
-UNS8 proceedSYNC (CO_Data* d);
+UNS8 proceedSYNC(CO_Data* d);
 
 #endif

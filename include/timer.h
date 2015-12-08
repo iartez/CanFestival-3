@@ -18,7 +18,7 @@ Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-*/
+ */
 
 #ifndef __timer_h__
 #define __timer_h__
@@ -41,12 +41,12 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 typedef void (*TimerCallback_t)(CO_Data* d, UNS32 id);
 
 struct struct_s_timer_entry {
-	UNS8 state;
-	CO_Data* d;
-	TimerCallback_t callback; /* The callback func. */
-	UNS32 id; /* The callback func. */
-	TIMEVAL val;
-	TIMEVAL interval; /* Periodicity */
+    UNS8 state;
+    CO_Data* d;
+    TimerCallback_t callback; /* The callback func. */
+    UNS32 id; /* The callback func. */
+    TIMEVAL val;
+    TIMEVAL interval; /* Periodicity */
 };
 
 typedef struct struct_s_timer_entry s_timer_entry;

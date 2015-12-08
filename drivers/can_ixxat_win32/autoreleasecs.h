@@ -19,23 +19,22 @@ Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-*/
+ */
 
 // Critical Section Autorelease
 #ifndef __autoreleasecs_h__
 #define __autoreleasecs_h__
 
-class AutoReleaseCS
-   {
-   public:
-      AutoReleaseCS(CRITICAL_SECTION& cs) : m_cs(cs)
-         {
-         ::EnterCriticalSection(&m_cs);
-         }
-      ~AutoReleaseCS()
-         {
-         ::LeaveCriticalSection(&m_cs);
-         }
-      CRITICAL_SECTION& m_cs;
-   };
- #endif // __autoreleasecs_h__
+class AutoReleaseCS {
+public:
+
+    AutoReleaseCS(CRITICAL_SECTION& cs) : m_cs(cs) {
+        ::EnterCriticalSection(&m_cs);
+    }
+
+    ~AutoReleaseCS() {
+        ::LeaveCriticalSection(&m_cs);
+    }
+    CRITICAL_SECTION& m_cs;
+};
+#endif // __autoreleasecs_h__

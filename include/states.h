@@ -18,12 +18,12 @@ Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-*/
+ */
 
 /** @defgroup statemachine State Machine
  *  @ingroup userapi
  */
- 
+
 #ifndef __states_h__
 #define __states_h__
 
@@ -35,29 +35,29 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  * for heartbeat messages...
  * Must be coded on 7 bits only
  * */
+
 /* Should not be modified */
 enum enum_nodeState {
-  Initialisation  = 0x00, 
-  Disconnected    = 0x01,
-  Connecting      = 0x02,
-  Preparing       = 0x02,
-  Stopped         = 0x04,
-  Operational     = 0x05,
-  Pre_operational = 0x7F,
-  Unknown_state   = 0x0F
+    Initialisation = 0x00,
+    Disconnected = 0x01,
+    Connecting = 0x02,
+    Preparing = 0x02,
+    Stopped = 0x04,
+    Operational = 0x05,
+    Pre_operational = 0x7F,
+    Unknown_state = 0x0F
 };
 
 typedef enum enum_nodeState e_nodeState;
 
-typedef struct
-{
-	INTEGER8 csBoot_Up;
-	INTEGER8 csSDO;
-	INTEGER8 csEmergency;
-	INTEGER8 csSYNC;
-	INTEGER8 csLifeGuard;
-	INTEGER8 csPDO;
-	INTEGER8 csLSS;
+typedef struct {
+    INTEGER8 csBoot_Up;
+    INTEGER8 csSDO;
+    INTEGER8 csEmergency;
+    INTEGER8 csSYNC;
+    INTEGER8 csLifeGuard;
+    INTEGER8 csPDO;
+    INTEGER8 csLSS;
 } s_state_communication;
 
 /** 
@@ -114,7 +114,7 @@ void canDispatch(CO_Data* d, Message *m);
  * @param *d Pointer on a CAN object data structure
  * @return The node state
  */
-e_nodeState getState (CO_Data* d);
+e_nodeState getState(CO_Data* d);
 
 /** 
  * @ingroup statemachine
@@ -123,7 +123,7 @@ e_nodeState getState (CO_Data* d);
  * @param newState The state to assign
  * @return 
  */
-UNS8 setState (CO_Data* d, e_nodeState newState);
+UNS8 setState(CO_Data* d, e_nodeState newState);
 
 /**
  * @ingroup statemachine 
@@ -131,7 +131,7 @@ UNS8 setState (CO_Data* d, e_nodeState newState);
  * @param *d Pointer on a CAN object data structure
  * @return
  */
-UNS8 getNodeId (CO_Data* d);
+UNS8 getNodeId(CO_Data* d);
 
 /** 
  * @ingroup statemachine
@@ -139,12 +139,12 @@ UNS8 getNodeId (CO_Data* d);
  * @param *d Pointer on a CAN object data structure
  * @param nodeId The node ID to assign
  */
-void setNodeId (CO_Data* d, UNS8 nodeId);
+void setNodeId(CO_Data* d, UNS8 nodeId);
 
 /** 
  * @brief Some stuff to do when the node enter in pre-operational mode
  * @param *d Pointer on a CAN object data structure
  */
-void initPreOperationalMode (CO_Data* d);
+void initPreOperationalMode(CO_Data* d);
 
 #endif

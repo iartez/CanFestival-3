@@ -18,7 +18,7 @@ Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-*/
+ */
 
 #ifndef __APPLICFG_WIN32__
 #define __APPLICFG_WIN32__
@@ -135,23 +135,23 @@ do{char msg[300];\
 /// Definition of MSG_WAR
 // ---------------------
 #ifdef DEBUG_WAR_CONSOLE_ON
-    #define MSG_WAR(num, str, val) CANFESTIVAL_DEBUG_MSG(num, str, val)
+#define MSG_WAR(num, str, val) CANFESTIVAL_DEBUG_MSG(num, str, val)
 #else
-#    define MSG_WAR(num, str, val)
+#define MSG_WAR(num, str, val)
 #endif
 
 /// Definition of MSG_ERR
 // ---------------------
 #ifdef DEBUG_ERR_CONSOLE_ON
-#    define MSG_ERR(num, str, val) CANFESTIVAL_DEBUG_MSG(num, str, val)
+#define MSG_ERR(num, str, val) CANFESTIVAL_DEBUG_MSG(num, str, val)
 #else
-#    define MSG_ERR(num, str, val)
+#define MSG_ERR(num, str, val)
 #endif
 
 #ifdef DEBUG_ERR_DRIVER_CONSOLE_ON
-#    define MSG_ERR_DRV(...) CANFESTIVAL_DEBUG_DRV_MSG(__VA_ARGS__)
+#define MSG_ERR_DRV(...) CANFESTIVAL_DEBUG_DRV_MSG(__VA_ARGS__)
 #else
-#    define MSG_ERR_DRV(...)
+#define MSG_ERR_DRV(...)
 #endif
 
 

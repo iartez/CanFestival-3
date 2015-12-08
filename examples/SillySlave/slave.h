@@ -18,7 +18,7 @@ Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-*/
+ */
 
 /**
  * @file slave.h
@@ -27,13 +27,13 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  * This file is part of SillySlave demo for CANfestival
  * open source CANopen stack.
- */ 
+ */
 
 
 
 #include "data.h"
 
-INTEGER8 InitCANdevice( UNS8 bus, UNS32 baudrate, UNS8 node );
+INTEGER8 InitCANdevice(UNS8 bus, UNS32 baudrate, UNS8 node);
 
 void SillySlave_heartbeatError(CO_Data* d, UNS8);
 

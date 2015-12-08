@@ -18,7 +18,7 @@ Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-*/
+ */
 
 #if defined(WIN32) && !defined(__CYGWIN__)
 #include <windows.h>
@@ -41,8 +41,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 //#include <can_driver.h>
 //#include <timers_driver.h>
-extern "C"
-{
+extern "C" {
 #include "canfestival.h"
 }
 #include "CallBack.h"
@@ -53,66 +52,63 @@ extern wxTextCtrl *textLog;
 extern int node_id_ext;
 
 //***************************  INIT  *****************************************
+
 void
-InitNodes (CO_Data * d, UNS32 id)
-{
-  //****************************** INITIALISATION SLAVE *******************************
-  /* Defining the node Id */
-  setNodeId (&ObjDict_Data, node_id_ext);
-  /* init */
-  setState (&ObjDict_Data, Initialisation);
+InitNodes(CO_Data * d, UNS32 id) {
+    //****************************** INITIALISATION SLAVE *******************************
+    /* Defining the node Id */
+    setNodeId(&ObjDict_Data, node_id_ext);
+    /* init */
+    setState(&ObjDict_Data, Initialisation);
 }
 
 /***************************  EXIT  *****************************************/
-void Exit(CO_Data* d, UNS32 id)
-{
-  	setState (&ObjDict_Data, Stopped);
-	canClose (&ObjDict_Data);
+void Exit(CO_Data* d, UNS32 id) {
+    setState(&ObjDict_Data, Stopped);
+    canClose(&ObjDict_Data);
 }
 //****************************************************************************
 //***************************  MAIN  *****************************************
 //****************************************************************************
+
 int
-main_can (s_BOARD SlaveBoard, char *LibraryPath)
-{
+main_can(s_BOARD SlaveBoard, char *LibraryPath) {
 #if !defined(WIN32) && !defined(__CYGWIN__)
-	//TimerInit();
-#endif	
-	TimerInit();
-	printf ("Bus name: %s        Freq: %s       Driver: %s\n",
-	  SlaveBoard.busname, SlaveBoard.baudrate, LibraryPath);
+    //TimerInit();
+#endif 
+    TimerInit();
+    printf("Bus name: %s        Freq: %s       Driver: %s\n",
+            SlaveBoard.busname, SlaveBoard.baudrate, LibraryPath);
 
 #ifndef NOT_USE_DYNAMIC_LOADING
-  if (LoadCanDriver (LibraryPath) == NULL)
-    *textLog << wxT ("Unable to load library\n");
+    if (LoadCanDriver(LibraryPath) == NULL)
+        *textLog << wxT("Unable to load library\n");
 #endif
-  // Open CAN devices
+    // Open CAN devices
 
-  ObjDict_Data.heartbeatError = Call_heartbeatError;
-  ObjDict_Data.initialisation = Call_initialisation;
-  ObjDict_Data.preOperational = Call_preOperational;
-  ObjDict_Data.operational = Call_operational;
-  ObjDict_Data.stopped = Call_stopped;
-  ObjDict_Data.post_sync = Call_post_sync;
-  ObjDict_Data.post_TPDO = Call_post_TPDO;
-  ObjDict_Data.storeODSubIndex = Call_storeODSubIndex;
+    ObjDict_Data.heartbeatError = Call_heartbeatError;
+    ObjDict_Data.initialisation = Call_initialisation;
+    ObjDict_Data.preOperational = Call_preOperational;
+    ObjDict_Data.operational = Call_operational;
+    ObjDict_Data.stopped = Call_stopped;
+    ObjDict_Data.post_sync = Call_post_sync;
+    ObjDict_Data.post_TPDO = Call_post_TPDO;
+    ObjDict_Data.storeODSubIndex = Call_storeODSubIndex;
 
-  if (!canOpen (&SlaveBoard, &ObjDict_Data))
-    {
-      printf ("Cannot open Slave Board (%s,%s)\n", SlaveBoard.busname,
-	      SlaveBoard.baudrate);
-      return (1);
+    if (!canOpen(&SlaveBoard, &ObjDict_Data)) {
+        printf("Cannot open Slave Board (%s,%s)\n", SlaveBoard.busname,
+                SlaveBoard.baudrate);
+        return (1);
     }
 
-  StartTimerLoop (&InitNodes);
+    StartTimerLoop(&InitNodes);
 
-  return 0;
+    return 0;
 }
 
 void
-stop_slave ()
-{
-  StopTimerLoop (&Exit);
-  TimerCleanup();
-  return;
+stop_slave() {
+    StopTimerLoop(&Exit);
+    TimerCleanup();
+    return;
 }

@@ -18,23 +18,23 @@ Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-*/
+ */
 
 /*!
-** @file   emcy.h
-** @author Luis Jimenez
-** @date   Wed Sep 26 2007
-**
-** @brief Declarations of the functions that manage EMCY (emergency) messages
-**
-**
-*/
- 
+ ** @file   emcy.h
+ ** @author Luis Jimenez
+ ** @date   Wed Sep 26 2007
+ **
+ ** @brief Declarations of the functions that manage EMCY (emergency) messages
+ **
+ **
+ */
+
 /** @defgroup emcyo Emergency Object
  *  Emergency Object is used to communicate device and application failures.
  *  @ingroup comobj
  */
-					 
+
 #ifndef __emcy_h__
 #define __emcy_h__
 
@@ -44,14 +44,14 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 /* The error states 
  * ----------------- */
 typedef enum enum_errorState {
-  Error_free		= 0x00, 
-  Error_occurred	= 0x01
+    Error_free = 0x00,
+    Error_occurred = 0x01
 } e_errorState;
 
 typedef struct {
-	UNS16 errCode;
-	UNS8 errRegMask;
-	UNS8 active;
+    UNS16 errCode;
+    UNS8 errRegMask;
+    UNS8 active;
 } s_errors;
 
 #include "data.h"

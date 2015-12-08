@@ -19,7 +19,7 @@ Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-*/
+ */
 
 #ifndef __CAN_AVR__
 #define __CAN_AVR__
@@ -33,7 +33,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "can.h"
 
 // Number of receive MOb
-#define NB_RX_MOB                       13	// minimal 8
+#define NB_RX_MOB                       13 // minimal 8
 // Number of transmit MOb
 #define NB_TX_MOB                       (NB_MOB - NB_RX_MOB)
 
@@ -44,12 +44,12 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #endif
 
 #define START_TX_MOB                    NB_RX_MOB
-#define TX_INT_MSK			((0x7F << (7 - NB_TX_MOB)) & 0x7F)
+#define TX_INT_MSK   ((0x7F << (7 - NB_TX_MOB)) & 0x7F)
 
 /************************* To be called by user app ***************************/
 
 unsigned char canInit(unsigned int bitrate);
 unsigned char canSend(CAN_PORT notused, Message *m);
 unsigned char canReceive(Message *m);
-unsigned char canChangeBaudRate_driver( CAN_HANDLE fd, char* baud);
+unsigned char canChangeBaudRate_driver(CAN_HANDLE fd, char* baud);
 #endif

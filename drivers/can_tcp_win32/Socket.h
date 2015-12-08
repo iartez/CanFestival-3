@@ -1,7 +1,7 @@
 /* 
    Socket.h
 
-   Copyright (C) 2002-2004 René Nyffenegger
+   Copyright (C) 2002-2004 Renï¿½ Nyffenegger
 
    This source code is provided 'as-is', without any express or implied
    warranty. In no event will the author be held liable for any damages
@@ -21,8 +21,8 @@
 
    3. This notice may not be removed or altered from any source distribution.
 
-   René Nyffenegger rene.nyffenegger@adp-gmbh.ch
-*/
+   Renï¿½ Nyffenegger rene.nyffenegger@adp-gmbh.ch
+ */
 
 #ifndef SOCKET_H
 #define SOCKET_H
@@ -31,69 +31,72 @@
 
 #include <string>
 
-enum TypeSocket {BlockingSocket, NonBlockingSocket};
+enum TypeSocket {
+    BlockingSocket, NonBlockingSocket
+};
 
 class Socket {
 public:
 
-  virtual ~Socket();
-  Socket(const Socket&);
-  Socket& operator=(Socket&);
+    virtual ~Socket();
+    Socket(const Socket&);
+    Socket& operator=(Socket&);
 
-  std::string ReceiveLine();
-  std::string ReceiveBytes();
+    std::string ReceiveLine();
+    std::string ReceiveBytes();
 
-  void   Close();
+    void Close();
 
-  // The parameter of SendLine is not a const reference
-  // because SendLine modifes the std::string passed.
-  void   SendLine (std::string);
+    // The parameter of SendLine is not a const reference
+    // because SendLine modifes the std::string passed.
+    void SendLine(std::string);
 
-  // The parameter of SendBytes is a const reference
-  // because SendBytes does not modify the std::string passed 
-  // (in contrast to SendLine).
-  void   SendBytes(const std::string&);
+    // The parameter of SendBytes is a const reference
+    // because SendBytes does not modify the std::string passed 
+    // (in contrast to SendLine).
+    void SendBytes(const std::string&);
 
 protected:
-  friend class SocketServer;
-  friend class SocketSelect;
+    friend class SocketServer;
+    friend class SocketSelect;
 
-  Socket(SOCKET s);
-  Socket();
+    Socket(SOCKET s);
+    Socket();
 
 
-  SOCKET s_;
+    SOCKET s_;
 
-  int* refCounter_;
+    int* refCounter_;
 
 private:
-  static void Start();
-  static void End();
-  static int  nofSockets_;
+    static void Start();
+    static void End();
+    static int nofSockets_;
 };
 
 class SocketClient : public Socket {
 public:
-  SocketClient(const std::string& host, int port);
+    SocketClient(const std::string& host, int port);
 };
 
 class SocketServer : public Socket {
 public:
-  SocketServer(int port, int connections, TypeSocket type=BlockingSocket);
+    SocketServer(int port, int connections, TypeSocket type = BlockingSocket);
 
-  Socket* Accept();
+    Socket* Accept();
 };
 
 // http://msdn.microsoft.com/library/default.asp?url=/library/en-us/winsock/wsapiref_2tiq.asp
+
 class SocketSelect {
-  public:
-    SocketSelect(Socket const * const s1, Socket const * const s2=NULL, TypeSocket type=BlockingSocket);
+public:
+    SocketSelect(Socket const * const s1, Socket const * const s2 = NULL, TypeSocket type = BlockingSocket);
 
     bool Readable(Socket const * const s);
 
-  private:
+private:
     fd_set fds_;
-}; 
+};
 
 
 

@@ -18,7 +18,7 @@ Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-*/
+ */
 
 /** @defgroup networkmanagement Network Management
  *  @ingroup userapi
@@ -27,7 +27,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *  @brief NMT master provides mechanisms that control and monitor the state of nodes and their behavior in the network.
  *  @ingroup networkmanagement
  */
- 
+
 #ifndef __nmtMaster_h__
 #define __nmtMaster_h__
 
@@ -58,7 +58,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *                   - 0 if the NMT message was send
  *                   - 1 if an error occurs 
  */
-UNS8 masterSendNMTstateChange (CO_Data* d, UNS8 nodeId, UNS8 cs);
+UNS8 masterSendNMTstateChange(CO_Data* d, UNS8 nodeId, UNS8 cs);
 
 /**
  * @ingroup nmtmaster 
@@ -70,7 +70,7 @@ UNS8 masterSendNMTstateChange (CO_Data* d, UNS8 nodeId, UNS8 cs);
  *         - 0 is returned if the NodeGuard message was send.
  *         - 1 is returned if an error occurs.
  */
-UNS8 masterSendNMTnodeguard (CO_Data* d, UNS8 nodeId);
+UNS8 masterSendNMTnodeguard(CO_Data* d, UNS8 nodeId);
 
 /** 
  * @ingroup nmtmaster
@@ -80,7 +80,7 @@ UNS8 masterSendNMTnodeguard (CO_Data* d, UNS8 nodeId);
  * @param *d Pointer to a CAN object data structure
  * @param nodeId Id of the slave node
  */
-UNS8 masterRequestNodeState (CO_Data* d, UNS8 nodeId);
+UNS8 masterRequestNodeState(CO_Data* d, UNS8 nodeId);
 
 
 #endif /* __nmtMaster_h__ */

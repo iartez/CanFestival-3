@@ -18,7 +18,7 @@ Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-*/
+ */
 
 #ifndef __CANDRIVER__
 #define __CANDRIVER__
@@ -32,7 +32,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 /*
 The CAN message received are stored in a fifo stack
 We consider one stack for all the 5 can devices. It is a choice !
-*/
+ */
 
 /* Be free to change this value */
 #define MAX_STACK_MSG_RCV 5
@@ -42,7 +42,7 @@ used only for ONE line CAN. But you may used one or more CAN drivers, without
 a CanOpen layer.
 Only 2 lines are implemented. If more lines are needed, copy void __attribute__((interrupt)) can0HdlRcv (void) to void __attribute__((interrupt)) canXHdlRcv (void) and make 
 changes : [0] to [x], CAN0 to CANX, etc
-*/
+ */
 #define NB_LINE_CAN 1
 
 /* Whose hardware HCS12 CAN block is used for CanOpen ? Chose between CAN0, ..., CAN4
@@ -54,19 +54,18 @@ Value other than CAN0 not tested, but should work fine.
 
 /* Stack of received messages 
 MSG received on CAN0 module is stored in stackMsgRcv[0], etc
-*/
+ */
 extern volatile Message stackMsgRcv[NB_LINE_CAN][MAX_STACK_MSG_RCV];
 
 
 /* Copy from the stack of the message to treat */
 extern Message msgRcv;
 
-
 /* To move on the stack of messages 
  */
 typedef struct {
-  UNS8 w ; /* received */
-  UNS8 r ; /* To transmit */
+    UNS8 w; /* received */
+    UNS8 r; /* To transmit */
 } t_pointerStack;
 
 
@@ -95,37 +94,37 @@ CAN_BUS_TIME clk = {
         so the freq of the bit time is 1 MHz.
       
   };
-*/
+ */
 typedef struct {
-  UNS8  clksrc;     /* use of internal clock  or clock bus        */
-  UNS8  brp;        /* define the bus speed                       */
-  UNS8  sjw;        /* Number of time quantum for synchro - 1     */
-  UNS8  samp;       /* Number of sample per bit (1 or 3)          */
-  UNS8  tseg2;      /* Width of the time segment 2 (in tq) - 1    */
-  UNS8  tseg1;      /* Width of the time segment 1 (in tq) - 1    */
+    UNS8 clksrc; /* use of internal clock  or clock bus        */
+    UNS8 brp; /* define the bus speed                       */
+    UNS8 sjw; /* Number of time quantum for synchro - 1     */
+    UNS8 samp; /* Number of sample per bit (1 or 3)          */
+    UNS8 tseg2; /* Width of the time segment 2 (in tq) - 1    */
+    UNS8 tseg1; /* Width of the time segment 1 (in tq) - 1    */
 } canBusTime;
 
 /* 
 Parameters to init the filters for received messages
-*/
+ */
 typedef struct {
-  UNS8  idam;        /* Put 0x01 for 16 bits acceptance filter    */
-  UNS8  canidar0;
-  UNS8  canidmr0;
-  UNS8  canidar1;
-  UNS8  canidmr1; 
-  UNS8  canidar2;
-  UNS8  canidmr2;
-  UNS8  canidar3;
-  UNS8  canidmr3;
-  UNS8  canidar4;
-  UNS8  canidmr4;
-  UNS8  canidar5;
-  UNS8  canidmr5; 
-  UNS8  canidar6;
-  UNS8  canidmr6;
-  UNS8  canidar7;
-  UNS8  canidmr7;  
+    UNS8 idam; /* Put 0x01 for 16 bits acceptance filter    */
+    UNS8 canidar0;
+    UNS8 canidmr0;
+    UNS8 canidar1;
+    UNS8 canidmr1;
+    UNS8 canidar2;
+    UNS8 canidmr2;
+    UNS8 canidar3;
+    UNS8 canidmr3;
+    UNS8 canidar4;
+    UNS8 canidmr4;
+    UNS8 canidar5;
+    UNS8 canidmr5;
+    UNS8 canidar6;
+    UNS8 canidmr6;
+    UNS8 canidar7;
+    UNS8 canidmr7;
 } canBusFilterInit;
 
 /*
@@ -148,21 +147,21 @@ CAN_BUS_INIT bi = {
       9,       time segment 1 width : (9 + 1) tq                     
     }
   };   
-*/
+ */
 
 typedef struct {
-  UNS8  cswai;      /* Low power/normal in wait mode   (1/0)      */
-  UNS8  time;       /* Timer for time-stamp enable/disable (1/0)  */
-  UNS8  cane;       /* Enable MSCAN (yes=1) Do it !               */
-  UNS8  clksrc;     /* clock source bus/oscillator (1/0)          */
-  UNS8  loopb;      /* loop back mode for test (yes=1/no=0)       */
-  UNS8  listen;     /* MSCAN is listen only (yes=1/no=0 ie normal)*/
-  UNS8  wupm;       /* low pas filter for wake up (yes=1/no=0)    */
-  canBusTime 
-        clk;        /* Values for clock system init               */
-  canBusFilterInit
-  fi;               /* Values for filter acceptance msg init      */
-  
+    UNS8 cswai; /* Low power/normal in wait mode   (1/0)      */
+    UNS8 time; /* Timer for time-stamp enable/disable (1/0)  */
+    UNS8 cane; /* Enable MSCAN (yes=1) Do it !               */
+    UNS8 clksrc; /* clock source bus/oscillator (1/0)          */
+    UNS8 loopb; /* loop back mode for test (yes=1/no=0)       */
+    UNS8 listen; /* MSCAN is listen only (yes=1/no=0 ie normal)*/
+    UNS8 wupm; /* low pas filter for wake up (yes=1/no=0)    */
+    canBusTime
+    clk; /* Values for clock system init               */
+    canBusFilterInit
+    fi; /* Values for filter acceptance msg init      */
+
 } canBusInit;
 
 extern canBusInit bi;
@@ -182,27 +181,27 @@ if CANIDARx = 0 then  CANIDARx = id . else do nothing
 CANIDMRx = CANIDMRx OR (CANIDARx XOR id )
 nFilter : 0 to 3
 Must be in init mode before.
-*/
-char canAddIdToFilter (
-		       UNS16 adrCAN,
-		       UNS8 nFilter,
-		       UNS16 id /* 11 bits, the 5 msb not used */
-		       );
+ */
+char canAddIdToFilter(
+        UNS16 adrCAN,
+        UNS8 nFilter,
+        UNS16 id /* 11 bits, the 5 msb not used */
+        );
 
 /*
  Use this function to change the CAN message acceptance filters and masks.
  */
-char canChangeFilter (UNS16 adrCAN, canBusFilterInit fi);
+char canChangeFilter(UNS16 adrCAN, canBusFilterInit fi);
 
 
 /*
 Enable one of the 5 MSCAN.
 Must be done only one time after a reset of the CPU.
 To do before any CAN initialisation
-*/
-char canEnable (
-		UNS16 adrCAN /* First address of MSCANx registers */
-		);
+ */
+char canEnable(
+        UNS16 adrCAN /* First address of MSCANx registers */
+        );
 
 
 /* 
@@ -212,21 +211,21 @@ Return 0 : OK
 When it return from the function,
 mscan is on sleep mode with wake up disabled.
       is not on init mode
-*/
-char canInit (
-	      UNS16 adrCAN,   /* First address of MSCANx registers  */
-	      canBusInit 
-	      bi       /* All the parameters to init the bus */
-	      );
+ */
+char canInit(
+        UNS16 adrCAN, /* First address of MSCANx registers  */
+        canBusInit
+        bi /* All the parameters to init the bus */
+        );
 /*
 Initialize the parameters of the system clock for the MSCAN
 You must put the MSCAN in sleep mode before with canSleepMode()
 Return 0 : OK
        1 : Not in sleep mode. Unable to init MSCAN 
-*/
-char canInitClock (
-		   UNS16 adrCAN, /* First address of MSCANx registers */
-		   canBusTime clk);
+ */
+char canInitClock(
+        UNS16 adrCAN, /* First address of MSCANx registers */
+        canBusTime clk);
 
 /* 
 Initialize one filter for acceptance of received msg.
@@ -243,41 +242,41 @@ mr : Value to write in mask register
      Beware ! hight byte and low byte inverted.
      for example if nFilter = 2, hight byte of ar -> CANIDMR4
                                  low   byte of ar -> CANIDMR5
-*/
-char canInit1Filter (
-		     UNS16 adrCAN, 
-		     UNS8 nFilter,
-		     UNS16 ar,
-		     UNS16 mr
-		     );
+ */
+char canInit1Filter(
+        UNS16 adrCAN,
+        UNS8 nFilter,
+        UNS16 ar,
+        UNS16 mr
+        );
 
 /*
 Initialise the parameters for filtering the messages received.
 You must put the MSCAN in init mode before with canInitMode()
 Return 0 : OK
        1 : Not in init mode. Unable to init MSCAN 
-*/
+ */
 
-char canInitFilter (
-		    UNS16 adrCAN, /* First address of MSCANx registers */
-		    canBusFilterInit fi);
+char canInitFilter(
+        UNS16 adrCAN, /* First address of MSCANx registers */
+        canBusFilterInit fi);
 /*
 Put one of the 5 mscan in Init mode
 Loop until init mode is reached.
-*/
+ */
 
-char canInitMode (
-		  UNS16 adrCAN /* First address of MSCANx registers */
-		  );	
+char canInitMode(
+        UNS16 adrCAN /* First address of MSCANx registers */
+        );
 
 /*
 Leave the Init mode
 loop until init mode leaved.
-*/
+ */
 
-char canInitModeQ (
-		   UNS16 adrCAN /* First address of MSCANx registers */
-		   );
+char canInitModeQ(
+        UNS16 adrCAN /* First address of MSCANx registers */
+        );
 
 
 
@@ -285,17 +284,17 @@ char canInitModeQ (
 Transmit a msg on CAN "adrCan"
 Return : 0      No error
          other  error : no buffer available to make the transmission
-*/	
+ */
 
-char canMsgTransmit (
-		     UNS16 adrCAN,  /* First address of MSCANx registers */
-		     Message msg  /* Message to transmit                */
-		     );
+char canMsgTransmit(
+        UNS16 adrCAN, /* First address of MSCANx registers */
+        Message msg /* Message to transmit                */
+        );
 
 /*
  Set the interruptions. Must be call just after having left the init mode.
- */	     
-char canSetInterrupt (UNS16 adrCAN);		     
+ */
+char canSetInterrupt(UNS16 adrCAN);
 
 /*
 Put one of the 5 mscan in sleep mode
@@ -307,20 +306,20 @@ bus traffic detected.
 return 0 if 0K, other if error : mscan is on init mode.
 Stay in this function until the sleep mode
 is reached.
-*/
-char canSleepMode (
-		   UNS16 adrCAN /* First address of MSCANx registers */
-		   );	
+ */
+char canSleepMode(
+        UNS16 adrCAN /* First address of MSCANx registers */
+        );
 
 /*
 Leave the sleep mode
 loop until sleep mode leaved.
 return 0 : OK
 return 1 : error : in init mode
-*/
-char canSleepModeQ (
-		    UNS16 adrCAN /* First address of MSCANx registers */
-		    );	
+ */
+char canSleepModeQ(
+        UNS16 adrCAN /* First address of MSCANx registers */
+        );
 
 /*
 Put one of the 5 mscan in sleep mode
@@ -331,30 +330,30 @@ or if it is receiving, going into sleep mode
 may take time.
 Loop until sleep mode reached.
 return 0 if 0K, other if error
-*/
-char canSleepWupMode (
-		      UNS16 adrCAN /* First address of MSCANx registers */
-		      );	
+ */
+char canSleepWupMode(
+        UNS16 adrCAN /* First address of MSCANx registers */
+        );
 
 /*
 Test if one of the 5 mscan is in init mode.
 Return 
        0     -> Not in init mode
        other -> In init mode
-*/
-char canTestInitMode (
-		      UNS16 adrCAN /* First address of MSCANx registers */
-		      );   
+ */
+char canTestInitMode(
+        UNS16 adrCAN /* First address of MSCANx registers */
+        );
 
 /*
 Test if one of the 5 mscan is in sleep mode.
 Return 
        0     -> Not in sleep mode
        other -> In sleep mode
-*/
-char canTestSleepMode (
-		       UNS16 adrCAN /* First address of MSCANx registers */
-		       );   
+ */
+char canTestSleepMode(
+        UNS16 adrCAN /* First address of MSCANx registers */
+        );
 
 
 

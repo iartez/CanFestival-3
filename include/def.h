@@ -18,7 +18,7 @@ Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-*/
+ */
 
 
 #ifndef __def_h__
@@ -28,13 +28,13 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 /** definitions used for object dictionary access. ie SDO Abort codes . (See DS 301 v.4.02 p.48)
  */
-#define OD_SUCCESSFUL 	             0x00000000
+#define OD_SUCCESSFUL               0x00000000
 #define OD_READ_NOT_ALLOWED          0x06010001
 #define OD_WRITE_NOT_ALLOWED         0x06010002
 #define OD_NO_SUCH_OBJECT            0x06020000
 #define OD_NOT_MAPPABLE              0x06040041
 #define OD_LENGTH_DATA_INVALID       0x06070010
-#define OD_NO_SUCH_SUBINDEX 	     0x06090011
+#define OD_NO_SUCH_SUBINDEX       0x06090011
 #define OD_VALUE_RANGE_EXCEEDED      0x06090030 /* Value range test result */
 #define OD_VALUE_TOO_LOW             0x06090031 /* Value range test result */
 #define OD_VALUE_TOO_HIGH            0x06090032 /* Value range test result */
@@ -50,7 +50,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 /** Constantes which permit to define if a PDO frame
    is a request one or a data one
-*/
+ */
 /* Should not be modified */
 #define REQUEST 1
 #define NOT_A_REQUEST 0
@@ -66,17 +66,17 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #ifndef FALSE
 #define FALSE 0
 #endif
-    
+
 /** Status of the SDO transmission
  */
 #define SDO_RESET                0x0      /* Transmission not started. Init state. */
 #define SDO_FINISHED             0x1      /* data are available */                          
-#define	SDO_ABORTED_RCV          0x80     /* Received an abort message. Data not available */
-#define	SDO_ABORTED_INTERNAL     0x85     /* Aborted but not because of an abort message. */
-#define	SDO_DOWNLOAD_IN_PROGRESS 0x2 
-#define	SDO_UPLOAD_IN_PROGRESS   0x3   
-#define	SDO_BLOCK_DOWNLOAD_IN_PROGRESS 0x4 
-#define	SDO_BLOCK_UPLOAD_IN_PROGRESS   0x5
+#define SDO_ABORTED_RCV          0x80     /* Received an abort message. Data not available */
+#define SDO_ABORTED_INTERNAL     0x85     /* Aborted but not because of an abort message. */
+#define SDO_DOWNLOAD_IN_PROGRESS 0x2 
+#define SDO_UPLOAD_IN_PROGRESS   0x3   
+#define SDO_BLOCK_DOWNLOAD_IN_PROGRESS 0x4 
+#define SDO_BLOCK_UPLOAD_IN_PROGRESS   0x5
 
 /** getReadResultNetworkDict may return any of above status value or this one
  */
@@ -102,7 +102,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #define INITIATE_DOWNLOAD_RESPONSE   3
 #define INITIATE_UPLOAD_RESPONSE     2
 #define ABORT_TRANSFER_REQUEST       4
-#define BLOCK_DOWNLOAD_RESPONSE    	 5
+#define BLOCK_DOWNLOAD_RESPONSE      5
 #define BLOCK_UPLOAD_RESPONSE        6
 
 /* SDO block upload client subcommand */
@@ -127,8 +127,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 /*  Function Codes 
    ---------------
   defined in the canopen DS301 
-*/
-#define NMT	   0x0
+ */
+#define NMT    0x0
 #define SYNC       0x1
 #define TIME_STAMP 0x2
 #define PDO1tx     0x3
@@ -142,7 +142,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #define SDOtx      0xB
 #define SDOrx      0xC
 #define NODE_GUARD 0xE
-#define LSS 	   0xF
+#define LSS     0xF
 
 /* NMT Command Specifier, sent by master to change a slave state */
 /* ------------------------------------------------------------- */
@@ -157,8 +157,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 #define LSS_RESET                0x0      /* Transmission not started. Init state. */
 #define LSS_FINISHED             0x1      /* data are available */                          
-#define	LSS_ABORTED_INTERNAL     0x2     /* Aborted but not because of an abort message. */
-#define	LSS_TRANS_IN_PROGRESS 	 0x3    
+#define LSS_ABORTED_INTERNAL     0x2     /* Aborted but not because of an abort message. */
+#define LSS_TRANS_IN_PROGRESS   0x3    
 
 /* constantes used in the different state machines */
 /* ----------------------------------------------- */

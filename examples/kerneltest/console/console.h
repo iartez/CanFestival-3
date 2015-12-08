@@ -3,7 +3,7 @@
 
 #define DEVICE_NAME "canf_ktest"
 
-#define CMD_START	'1'
-#define CMD_STOP	'2'
+#define CMD_START '1'
+#define CMD_STOP '2'
 
 #endif // __canftest_console.h__
